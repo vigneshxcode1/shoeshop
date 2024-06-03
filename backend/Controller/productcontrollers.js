@@ -2,9 +2,9 @@ import productmodel from "../Model/Productmodel.js"
 
 export const createproduct=async(req,res)=>{
 
-    const {productName,price, cutPrice,description, images,stock, sizes}=req.body
+    const {productName,price, category,cutPrice,description, images,stock, sizes}=req.body
 
-    productmodel.create({productName,price,cutPrice,description,images,stock,sizes})
+    productmodel.create({productName,price,cutPrice,description,images,stock,sizes, category})
     .then((result)=>{
       res.status(200).json({
         success:true,
@@ -28,7 +28,7 @@ export const getproduct=async(req,res)=>{
 
 
 export const getsingleproduct=async(req,res)=>{
-  productmodel.findById(req.params.id)
+productmodel.findById(req.params.id)
   .then((result)=>{
     res.status(200).json({
       success:true,

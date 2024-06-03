@@ -11,7 +11,19 @@ const ProductSchema = new mongoose.Schema({
     },
     cutPrice: {
         type: Number,
-        required: [true, 'Please enter the cut price']
+       
+    },
+    category:{
+        type:String,
+        required:[true],
+        enum:{
+            values:[
+                'nike',
+                'adidas',
+                'pumma',
+                'roadters'
+            ]
+        }
     },
     images: [{
         type: String,
@@ -29,6 +41,10 @@ const ProductSchema = new mongoose.Schema({
     stock: {
         type: Number,
         required: true
+    },
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'user'
     }
 }, {
     timestamps: true

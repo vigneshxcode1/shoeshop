@@ -2,7 +2,9 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from "dotenv"
+
 import productroute from '../backend/Routes/ProductRoutes.js'
+import UserRouter from './Routes/UserRoutes.js'
 
 
 
@@ -14,7 +16,12 @@ app.use(express.json())
 
 dotenv.config()
 
+
+
+
 app.use('/api/v1',productroute)
+
+app.use('/api/v1',UserRouter)
 
 main().catch(err => console.log(err));
 async function main() {
