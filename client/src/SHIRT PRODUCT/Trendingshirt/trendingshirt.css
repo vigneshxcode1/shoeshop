@@ -1,0 +1,60 @@
+.img-main {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+    gap: 20px;
+   
+  }
+  .title-1{
+    font-size: 60px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: rgb(23, 22, 22);
+    color: aliceblue;
+  }
+ 
+  span.showmore{
+    margin-top: 20px;
+   color: rgb(81, 80, 80);
+  text-decoration:underline;
+   display: block;
+  }
+  .img-main span {
+    display: inline-block;
+    flex: none;
+    margin-right: 20px;
+  }
+  
+  .stackimg {
+    width: 400px; 
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    transition: transform 0.7s;
+  }
+  
+  .stackimg:hover {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .stackimg {
+      width: 150px; 
+      justify-content: space-between;
+    }
+    .title-1{
+        font-size: 30px;
+        text-align: center;
+        
+      }
+    span.showmore{
+        text-align: end;
+        margin-right: 20px;
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+    
+  }
+  

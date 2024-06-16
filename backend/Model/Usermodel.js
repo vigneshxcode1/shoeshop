@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 
+import jwt from 'jsonwebtoken'
+
 const usershema = mongoose.Schema({
     username:{
         type:String,
@@ -13,8 +15,25 @@ const usershema = mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    user:{
+        type:String,
+        default:"user"
+    },
+    createAtTime:{
+        type:Date,
+        default:Date.now()
     }
 })
+
+
+usershema.methods.getJwtToken=function(){
+return jwt.sign(
+    {id:this.id},process.env.JWT_SECRET,{expiresIn:'7d'}
+)
+}
+
+
 
 const usermodel= mongoose.model('customer',usershema)
 

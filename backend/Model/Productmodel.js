@@ -31,7 +31,7 @@ const ProductSchema = new mongoose.Schema({
     }],
     sizes: [{
         type: String,
-        required: true,
+       
         enum: ['6', '7', '8', '9', '10', '11', '12']
     }],
     description: {

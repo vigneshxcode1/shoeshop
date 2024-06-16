@@ -9,50 +9,82 @@ import {
 import multer from "multer";
 import cloudinary from "../utils/Cloudary.js";
 import fs from "fs";
-import path from "path";
+
+import {
+  Createcloth,
+  deleteshirt,
+  getshirts,
+  getsingleshirts,
+  updateshirt,
+} from "../Controller/Cloth.js";
+import { isauthenicated } from "../utils/authenticate.js";
 
 const routes = express.Router();
 
+// Set up multer storage configuration
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+  destination: (req, file, cb) => {
     cb(null, "uploads");
   },
-  filename: function (req, file, cb) {
+  filename: (req, file, cb) => {
     cb(null, Date.now() + "-" + file.originalname);
   },
 });
 
 const upload = multer({ storage: storage });
 
-const uploadcloudimage = async (path) => {
+const uploadToCloudinary = async (path) => {
   try {
     const result = await cloudinary.uploader.upload(path);
-    fs.unlinkSync(path);
+    fs.unlinkSync(path); 
     return result.secure_url;
   } catch (error) {
-    console.log("error in uploading images", err);
+    console.error("Error in uploading images", error);
+    throw new Error("Image upload failed");
   }
 };
 
-routes.post(
-  "/createproduct",
-//   upload.array("images", 5),
-//   async (req, res, next) => {
-//     try {
-//       const imageupload = req.files.map(file => uploadcloudimage(file.path));
-//       const imageurl = await Promise.all(imageupload);
-//       req.body.imageurl = imageurl;
-//       next();
-//     } catch (err) {
-//         console.log("error in uploading images", err);
-//     }
-//   },
-  createproduct
-);
+const handleImageUpload = async (req, res, next) => {
+  try {
+    const imageUploadPromises = req.files.map(file => uploadToCloudinary(file.path));
+    const imageUrls = await Promise.all(imageUploadPromises);
 
-routes.get("/getallproducts", getproduct);
-routes.get("/getproducts/:id", getsingleproduct);
-routes.put("/updateproduct/update/:id", updateproduct);
-routes.delete("/deleteproduct/:id", deleteproduct);
+    req.body.images = imageUrls; 
+    next(); 
+  } catch (error) {
+    res.status(500).json({ message: 'Error uploading images', error });
+  }
+};
+
+
+// Clothing routes
+routes.post("/createcloth",isauthenicated,
+//  upload.array("images", 5),
+//  handleImageUpload,
+ Createcloth);
+routes.get("/getshirts",
+// isauthenicated,
+getshirts);
+routes.get("/getsingleshirts/:id",
+// isauthenicated,
+ getsingleshirts);
+routes.put("/updateshirt/:id",
+// isauthenicated,
+ updateshirt);
+routes.delete("/deleteshirt/:id",
+// isauthenicated,
+ deleteshirt);
 
 export default routes;
+
+
+// Shoe routes
+routes.post("/createshoes",
+//  upload.array("images", 5),
+  // handleImageUpload,
+  isauthenicated,
+   createproduct);
+routes.get("/getallproducts",isauthenicated, getproduct);
+routes.get("/getproducts/:id",isauthenicated, getsingleproduct);
+routes.put("/updateproduct/update/:id",isauthenicated, updateproduct);
+routes.delete("/deleteproduct/:id",isauthenicated, deleteproduct);

@@ -1,0 +1,47 @@
+
+/* Container styling */
+.collection-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; 
+
+ 
+}
+
+.poloshirts{
+   text-decoration: none;
+   color: black;
+}
+.collection {
+  flex: 1 1 calc(50% - 20px);
+  margin: 10px 0; 
+  box-sizing: border-box; 
+  border-radius: 10px;
+}
+
+
+.main-1, .main-2, .main-3, .main-4 {
+  text-align: center;
+
+  color: black;
+  border-radius: 10px;
+}
+
+.collectionimg2 {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.showmorebtn-1{
+  padding: 2px;
+  border: 1px solid rgb(19, 18, 18);
+  color: black;
+  font-size:15px;
+}
+
+.title-1 {
+  text-align: center;
+  margin-bottom: 20px;
+}

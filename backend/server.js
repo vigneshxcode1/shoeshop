@@ -2,9 +2,10 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from "dotenv"
-
+import cookieParser from 'cookie-parser'
 import productroute from '../backend/Routes/ProductRoutes.js'
 import UserRouter from './Routes/UserRoutes.js'
+import OrderRouter from './Routes/Order.js'
 
 
 
@@ -14,6 +15,7 @@ app.use(cors())
 
 app.use(express.json())
 
+app.use(cookieParser());
 dotenv.config()
 
 
@@ -22,6 +24,11 @@ dotenv.config()
 app.use('/api/v1',productroute)
 
 app.use('/api/v1',UserRouter)
+
+app.use('/api/v1',OrderRouter)
+
+
+
 
 main().catch(err => console.log(err));
 async function main() {
