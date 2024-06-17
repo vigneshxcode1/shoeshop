@@ -2,18 +2,20 @@ import productmodel from "../Model/Productmodel.js";
 import apifeature from "../utils/apifeatures.js";
 
 export const createproduct = async (req, res) => {
-  const { productName, price, category, cutPrice, description, stock, sizes } =req.body;
-  const images = req.body.images;
+  const { productName, price, category, cutPrice, description, stock, sizes,rating,seller } =req.body;
+  // const images = req.body.images;
   productmodel
     .create({
       productName,
       price,
       cutPrice,
       description,
-      images,
+      // images,
       stock,
       sizes,
       category,
+      rating,
+      seller
     })
     .then((result) => {
       res.status(200).json({

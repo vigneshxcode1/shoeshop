@@ -2,13 +2,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-import Navbar from "../../Navbar/Navbar"
-
+import "./shirt.css"
 
 const BASE_URL = "http://localhost:8000";
 
-function GridExample() {
+function getallshirt() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,8 +25,9 @@ function GridExample() {
           return dateB - dateA;
         });
 
-        const firstFourProducts = sortedProducts.slice(0, 4);
-        setProducts(firstFourProducts);
+        // const firstFourProducts = sortedProducts.slice(0, 4);
+        // setProducts(firstFourProducts);
+        setProducts(sortedProducts)
       } catch (err) {
         console.error("Error fetching products:", err);
         setError("Failed to load products. Please try again later.");
@@ -61,26 +60,27 @@ function GridExample() {
 
   return (
 <>
-<Navbar/>
+
 <br></br>
-<div className="containers">
-        <div className="main-box">
-          <h2 className="title-oversizes1">shirt collections</h2>
+<div className="containers-getallshirts">
+        <div className="main-box-getallshirts">
+          <h2 className="title-getallshirts">shirt collections</h2>
           <br></br>
           {products.map((product) => (
-            <div className="products" key={product._id}>
+            <div className="productsgetallshirts" key={product._id}>
               {product.images && product.images.length > 0 ? (
                 <img
-                  className="img-products"
+                  className="img-productsgetallshirts"
                   onClick={() => navigate(`/products/${product._id}`)}
                   src={product.images[0]} 
+                
                   alt={`${product.productName} first image`}
                 />
               ) : (
                 <p>No images available</p>
               )}
-              <p className="title-oversized">{product.productName}</p>
-              <p className="title-oversized">From at RS:{product.price}</p>
+              <p className="title-oversizedgetallshirts">{product.productName}</p>
+              <p className="title-getallshirts">From at RS:{product.price}</p>
             </div>
           ))}
         </div>
@@ -91,4 +91,4 @@ function GridExample() {
   );
 }
 
-export default GridExample
+export default getallshirt

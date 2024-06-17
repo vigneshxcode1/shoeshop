@@ -8,6 +8,7 @@ import Shirtscollections from '../../SHIRT PRODUCT/Shirtcollections/Shirtscollec
 import Shirtflashsale from '../../SHIRT PRODUCT/Shirtflashsale/Shirtflashsale';
 import FooterShirts from '../../SHIRT PRODUCT/Trendingshirt/FooterShirts/FooterShirts';
 import Footer from '../Footer/Footer';
+import { Link } from 'react-router-dom';
 
 function NoUncontrolledExample() {
   return (
@@ -16,14 +17,16 @@ function NoUncontrolledExample() {
 
     <Carousel>
       <Carousel.Item>
+      <Link to={"/getallshirts"} className='sub-title'>
         <img
         id='corol'
           className="d-block w-100 "
           src={Image} 
           alt="First slide"
         />
+        </Link>
         <Carousel.Caption>
-          <button className='sub-title'>SHOP</button>
+          <Link to={"/getallshirts"} className='sub-title'>SHOP</Link>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

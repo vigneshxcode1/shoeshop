@@ -2,37 +2,37 @@ import mongoose from "mongoose";
 
 const ClothSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
-    },
+    
     productName: {
       type: String,
-      required: [true, "Please enter the product name"],
+      
+    },
+    description: {
+      type: String,
+     
     },
     price: {
       type: Number,
-      required: [true, "Please enter the price"],
+    
     },
     cutPrice: {
       type: Number,
+     
     },
     category: {
       type: String,
-      required: true,
+
       enum: {
-        values: ["printed", "animi", "oversized", "tshirt"],
+        values: ["polo", "animi", "oversized", "tshirt"],
       },
     },
-    images: [
-      {
-        type: String,
-        // required: true
-      },
-    ],
+    images: [{
+      type: String, 
+
+    }],
     sizes: {
       type: String,
-      required:true,
+     
      enum:{
         values:[
             "s",
@@ -43,13 +43,14 @@ const ClothSchema = new mongoose.Schema(
      }
     },
 
-    description: {
-      type: String,
-      required: true,
-    },
+  
     stock: {
       type: Number,
-      required: true,
+     
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
     },
   },
   {

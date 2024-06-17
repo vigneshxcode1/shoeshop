@@ -16,10 +16,11 @@ app.use(cors())
 app.use(express.json())
 
 app.use(cookieParser());
+
 dotenv.config()
 
 
-
+ 
 
 app.use('/api/v1',productroute)
 

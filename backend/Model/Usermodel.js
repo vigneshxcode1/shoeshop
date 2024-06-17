@@ -16,7 +16,7 @@ const usershema = mongoose.Schema({
         type:String,
         required:true
     },
-    user:{
+    role:{
         type:String,
         default:"user"
     },

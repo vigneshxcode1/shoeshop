@@ -1,0 +1,88 @@
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+/* Container for the entire component */
+.containers-getallshirts {
+  max-width: 1200px;
+  margin: 0 auto;
+  
+}
+
+/* Main box containing products */
+.main-box-getallshirts {
+  background-color: #090808;
+  color: #767676;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title for shirt collections */
+.title-getallshirts {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Flexbox layout for products */
+.img-main-getallshirts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust spacing between products */
+  justify-content: space-between; /* Distribute items evenly */
+}
+
+/* Individual product container */
+.productsgetallshirts {
+  width: calc(50% - 10px); /* Two products per row with gap between */
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.productsgetallshirts:hover {
+  transform: translateY(-5px); /* Example hover effect */
+}
+
+/* Product image */
+.img-productsgetallshirts {
+  width: 100%;
+  max-height: 300px; /* Example max height for product image */
+  object-fit: cover; /* Ensure image covers the container */
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Product titles and details */
+.title-getallshirts {
+  font-size: 18px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  /* Adjust for mobile screens */
+  .img-main-getallshirts {
+    flex-direction: column; /* Stack products vertically on smaller screens */
+  }
+  img{
+    width: 40%;
+  }
+  
+  .productsgetallshirts {
+    width: 100%; /* Full width on mobile */
+    margin-bottom: 20px;
+  }
+}
